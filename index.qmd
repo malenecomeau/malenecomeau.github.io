@@ -1,39 +1,35 @@
 ---
-title: "YOUR NAME" 
+title: "Malene Comeau" 
 about:
   template: trestles  # jolla  trestles  solana  marquee  broadside
-  image: img/profile.png
+  image: img/website photo.png 
   image-width: 16em
   image-shape: rounded # rectangle  round  rounded
   
   links:
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
-    - icon: instagram
-      text: Instagram
-      href: https://instagram.com
+      href: www.linkedin.com/in/malene-comeau
     - icon: github
       text: GitHub
-      href: https://github.com
+      href: https://malenecomeau.github.com
     - icon: file-earmark-pdf
       text: Resumé
-      href: resume-example.pdf
+      href: Resume.pdf
       target: _blank
     - icon: mailbox
       text: Email
-      href: mailto:YOUR_EMAIL@geneseo.edu
+      href: mailto:mgc9@geneseo.edu
 
 ---
 
 
-Finley Malloc majors in Data Analytics at SUNY Geneseo. When not working on data analytics, Finley enjoys spending time unicycling and playing with her pet iguana.
+Malene Comeau majors in Data Analytics at SUNY Geneseo. When not working on data analytics, Malene enjoys spending time horse back riding and spending time in the outdoors. 
 
 ## Education
 
 State University of New York at Geneseo | Geneseo, NY <br>
-B.S. in Data Analytics | Aug 2022 - May 2026 <br>
-Minor in Economics
+B.S. in Data Analytics | Aug 2023 - May 2027 <br>
 
 ## Experience
 
