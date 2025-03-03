@@ -1,7 +1,6 @@
 project: 
   type: website
-  output-dir: "." 
-
+  output-dir: "."
 website:
   title: "Malene Comeau" 
   navbar:
