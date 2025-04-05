@@ -77,25 +77,11 @@
     "text": "import seaborn as sns\nimport matplotlib.pyplot as plt\nimport pandas as pd\n\n# Sample data\ndata = {\n    'Category': ['A', 'B', 'C', 'D'],\n    'Values': [23, 45, 56, 78]\n}\ndf = pd.DataFrame(data)\n\n# Create a barplot\nsns.set(style=\"whitegrid\")  # Optional: Set a clean grid style\nplt.figure(figsize=(8, 6))  # Set the figure size\nsns.barplot(data=df, x='Category', y='Values', palette='viridis')\n\n# Customize the plot\nplt.title(\"Bar Plot Example\", fontsize=16)\nplt.xlabel(\"Category\", fontsize=12)\nplt.ylabel(\"Values\", fontsize=12)\n\n# Show the plot\nplt.show()\n\nFutureWarning: \n\nPassing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.\n\n  sns.barplot(data=df, x='Category', y='Values', palette='viridis')"
   },
   {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
-    "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
-  },
-  {
-    "objectID": "posts/spotify/danl_210_spotify.html",
-    "href": "posts/spotify/danl_210_spotify.html",
+    "objectID": "posts/holiday movies/danl_210_holiday.html",
+    "href": "posts/holiday movies/danl_210_holiday.html",
     "title": "Spotify",
     "section": "",
-    "text": "import pandas as pd\n# Below is for an interactive display of DataFrame in Colab\nfrom google.colab import data_table\ndata_table.enable_dataframe_formatter()\nspotify = pd.read_csv('https://bcdanl.github.io/data/spotify_all.csv')\nspotify\n\nWarning: total number of rows (198005) exceeds max_rows (20000). Falling back to pandas display.\n\n\n\n  \n    \n\n\n\n\n\n\npid\nplaylist_name\npos\nartist_name\ntrack_name\nduration_ms\nalbum_name\n\n\n\n\n0\n0\nThrowbacks\n0\nMissy Elliott\nLose Control (feat. Ciara & Fat Man Scoop)\n226863\nThe Cookbook\n\n\n1\n0\nThrowbacks\n1\nBritney Spears\nToxic\n198800\nIn The Zone\n\n\n2\n0\nThrowbacks\n2\nBeyoncé\nCrazy In Love\n235933\nDangerously In Love (Alben für die Ewigkeit)\n\n\n3\n0\nThrowbacks\n3\nJustin Timberlake\nRock Your Body\n267266\nJustified\n\n\n4\n0\nThrowbacks\n4\nShaggy\nIt Wasn't Me\n227600\nHot Shot\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n198000\n999998\n✝️\n6\nChris Tomlin\nWaterfall\n209573\nLove Ran Red\n\n\n198001\n999998\n✝️\n7\nChris Tomlin\nThe Roar\n220106\nLove Ran Red\n\n\n198002\n999998\n✝️\n8\nCrowder\nLift Your Head Weary Sinner (Chains)\n224666\nNeon Steeple\n\n\n198003\n999998\n✝️\n9\nChris Tomlin\nWe Fall Down\n280960\nHow Great Is Our God: The Essential Collection\n\n\n198004\n999998\n✝️\n10\nCaleb and Kelsey\n10,000 Reasons / What a Beautiful Name\n178189\n10,000 Reasons / What a Beautiful Name\n\n\n\n\n198005 rows × 7 columns\n\n    \n\n  \n    \n\n  \n    \n  \n    \n\n  \n\n    \n  \n\n\n\n  \n\n\n    \n        \n    \n\n  \n\n\n\n  \n\n\n  \n    \n    \n\n  \n    \n  \n    \n    \n  \n\n    \n  \n\n\nWrite a blog post about your favorite artist(s) in the spotify DataFrame using Jupyter Notebook, and add it to your online blog. In your blog post, utilize counting, sorting, indexing, and filtering methods.\n\n(\nspotify\n  [['playlist_name', 'artist_name', 'track_name', 'album_name']]\n  .set_index('artist_name')\n  .count()\n\n)\n\n## My favorite songs in this data set fall under the playlist_name of Throwbacks. Some of my favoirte artists are Briteny Spears, Beyonce, and Justin Timberlake.\n\n\n\n\n\n\n\n\n0\n\n\n\n\nplaylist_name\n198005\n\n\ntrack_name\n198005\n\n\nalbum_name\n198005\n\n\n\n\ndtype: int64"
-  },
-  {
-    "objectID": "posts/post-with-code/index.html",
-    "href": "posts/post-with-code/index.html",
-    "title": "Post With Code",
-    "section": "",
-    "text": "This is a post with executable code with no space in the folder name.\n\n1 + 1\n\n[1] 2"
+    "text": "import pandas as pd\n# Below is for an interactive display of DataFrame in Colab\nfrom google.colab import data_table\ndata_table.enable_dataframe_formatter()\nholiday_movies = pd.read_csv(\"https://bcdanl.github.io/data/holiday_movies.csv\")\nholiday_movies\n\n\n  \n    \n\n\n\n\n\n\ntconst\ntitle_type\nprimary_title\nsimple_title\nyear\nruntime_minutes\naverage_rating\nnum_votes\n\n\n\n\n0\ntt0020356\nmovie\nSailor's Holiday\nsailors holiday\n1929\n58.0\n5.4\n55\n\n\n1\ntt0020823\nmovie\nThe Devil's Holiday\nthe devils holiday\n1930\n80.0\n6.0\n242\n\n\n2\ntt0020985\nmovie\nHoliday\nholiday\n1930\n91.0\n6.3\n638\n\n\n3\ntt0021268\nmovie\nHoliday of St. Jorgen\nholiday of st jorgen\n1930\n83.0\n7.4\n256\n\n\n4\ntt0021377\nmovie\nSin Takes a Holiday\nsin takes a holiday\n1930\n81.0\n6.1\n740\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n2260\ntt9747440\ntvMovie\nA Christmas Love Story\na christmas love story\n2019\n84.0\n6.9\n1652\n\n\n2261\ntt9747450\ntvMovie\nHoliday for Heroes\nholiday for heroes\n2019\n81.0\n7.0\n1655\n\n\n2262\ntt9802890\ntvMovie\nChristmas Jars\nchristmas jars\n2019\n93.0\n7.3\n914\n\n\n2263\ntt9815084\ntvMovie\nA Very British Christmas\na very british christmas\n2019\n90.0\n5.7\n725\n\n\n2264\ntt9892854\ntvMovie\n#Xmas\nxmas\n2022\n84.0\n5.8\n926\n\n\n\n\n2265 rows × 8 columns\n\n    \n\n  \n    \n\n  \n    \n  \n    \n\n  \n\n    \n  \n\n\n\n  \n\n\n    \n        \n    \n\n  \n\n\n\n  \n\n\n  \n    \n    \n\n  \n    \n  \n    \n    \n  \n\n    \n  \n\n\nUsing the provided DataFrames, write a blog post about Christmas movies in a Jupyter Notebook and publish it on your online blog. In your analysis, make use of counting, sorting, indexing, filtering, and joining techniques.\n\n(\nholiday_movies\n  [['primary_title', 'year', 'average_rating']]\n  .set_index('primary_title')\n  .query(\"year &gt; 2000\")\n  .value_counts()\n\n)\n\n# I narrowed down the holiday movies to the year I was born, and grew up watching these movies. I found the rating for all of the movies from 2005-2023 as well as the names of all of them.\n\n\n\n\n\n\n\n\n\ncount\n\n\nyear\naverage_rating\n\n\n\n\n\n2021\n6.3\n15\n\n\n6.5\n13\n\n\n2020\n5.8\n13\n\n\n2022\n6.2\n12\n\n\n2021\n5.5\n12\n\n\n...\n...\n...\n\n\n2023\n8.2\n1\n\n\n8.0\n1\n\n\n7.6\n1\n\n\n7.0\n1\n\n\n2001\n6.6\n1\n\n\n\n\n770 rows × 1 columns\ndtype: int64"
   },
   {
     "objectID": "posts/pythonbasics/danl_210_python_basic.html",
@@ -138,6 +124,27 @@
     "title": "Python Basics",
     "section": "",
     "text": "A list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code with no space in the folder name.\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "posts/spotify/danl_210_spotify.html",
+    "href": "posts/spotify/danl_210_spotify.html",
+    "title": "Spotify",
+    "section": "",
+    "text": "import pandas as pd\n# Below is for an interactive display of DataFrame in Colab\nfrom google.colab import data_table\ndata_table.enable_dataframe_formatter()\nspotify = pd.read_csv('https://bcdanl.github.io/data/spotify_all.csv')\nspotify\n\nWarning: total number of rows (198005) exceeds max_rows (20000). Falling back to pandas display.\n\n\n\n  \n    \n\n\n\n\n\n\npid\nplaylist_name\npos\nartist_name\ntrack_name\nduration_ms\nalbum_name\n\n\n\n\n0\n0\nThrowbacks\n0\nMissy Elliott\nLose Control (feat. Ciara & Fat Man Scoop)\n226863\nThe Cookbook\n\n\n1\n0\nThrowbacks\n1\nBritney Spears\nToxic\n198800\nIn The Zone\n\n\n2\n0\nThrowbacks\n2\nBeyoncé\nCrazy In Love\n235933\nDangerously In Love (Alben für die Ewigkeit)\n\n\n3\n0\nThrowbacks\n3\nJustin Timberlake\nRock Your Body\n267266\nJustified\n\n\n4\n0\nThrowbacks\n4\nShaggy\nIt Wasn't Me\n227600\nHot Shot\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n198000\n999998\n✝️\n6\nChris Tomlin\nWaterfall\n209573\nLove Ran Red\n\n\n198001\n999998\n✝️\n7\nChris Tomlin\nThe Roar\n220106\nLove Ran Red\n\n\n198002\n999998\n✝️\n8\nCrowder\nLift Your Head Weary Sinner (Chains)\n224666\nNeon Steeple\n\n\n198003\n999998\n✝️\n9\nChris Tomlin\nWe Fall Down\n280960\nHow Great Is Our God: The Essential Collection\n\n\n198004\n999998\n✝️\n10\nCaleb and Kelsey\n10,000 Reasons / What a Beautiful Name\n178189\n10,000 Reasons / What a Beautiful Name\n\n\n\n\n198005 rows × 7 columns\n\n    \n\n  \n    \n\n  \n    \n  \n    \n\n  \n\n    \n  \n\n\n\n  \n\n\n    \n        \n    \n\n  \n\n\n\n  \n\n\n  \n    \n    \n\n  \n    \n  \n    \n    \n  \n\n    \n  \n\n\nWrite a blog post about your favorite artist(s) in the spotify DataFrame using Jupyter Notebook, and add it to your online blog. In your blog post, utilize counting, sorting, indexing, and filtering methods.\n\n(\nspotify\n  [['playlist_name', 'artist_name', 'track_name', 'album_name']]\n  .set_index('artist_name')\n  .count()\n\n)\n\n## My favorite songs in this data set fall under the playlist_name of Throwbacks. Some of my favoirte artists are Briteny Spears, Beyonce, and Justin Timberlake.\n\n\n\n\n\n\n\n\n0\n\n\n\n\nplaylist_name\n198005\n\n\ntrack_name\n198005\n\n\nalbum_name\n198005\n\n\n\n\ndtype: int64"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
   },
   {
     "objectID": "posts/starwars/starwars_df.html",
@@ -186,6 +193,6 @@
     "href": "blog-listing.html",
     "title": "Insightful Analytics",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nSpotify\n\n\n\n\n\n\n\n\nFeb 14, 2025\n\n\nMalene_Comeau\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\nJan 22, 2025\n\n\nYOUR NAME\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nStarwars\n\n\n\n\n\n\n\n\nJan 22, 2025\n\n\nYour Name\n\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\n\nPython Basics\n\n\n\n\n\n\n\n\nJan 22, 2025\n\n\nMalene Comeau\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\n\nJan 22, 2025\n\n\nYOUR NAME\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nSpotify\n\n\n\n\n\n\n\n\nFeb 14, 2025\n\n\nMalene_Comeau\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nSpotify\n\n\n\n\n\n\n\n\nFeb 14, 2025\n\n\nMalene_Comeau\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\nJan 22, 2025\n\n\nYOUR NAME\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nStarwars\n\n\n\n\n\n\n\n\nJan 22, 2025\n\n\nYour Name\n\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\n\nPython Basics\n\n\n\n\n\n\n\n\nJan 22, 2025\n\n\nMalene Comeau\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\n\nJan 22, 2025\n\n\nYOUR NAME\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
   }
 ]
