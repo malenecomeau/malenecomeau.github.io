@@ -196,8 +196,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#add-the-following-section-to-your-spotify-blog" id="toc-add-the-following-section-to-your-spotify-blog" class="nav-link active" data-scroll-target="#add-the-following-section-to-your-spotify-blog"># Add the following section to your Spotify blog:</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -206,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div id="cell-1" class="cell" data-outputid="ebd9c145-fccd-4348-ade6-366f6a799343" data-execution_count="3">
+<div id="cell-1" class="cell" data-outputid="2d4c3176-e3a1-4d5e-9c48-7887591f26e2" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Below is for an interactive display of DataFrame in Colab</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.colab <span class="im">import</span> data_table</span>
@@ -216,9 +222,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>Warning: total number of rows (198005) exceeds max_rows (20000). Falling back to pandas display.</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="1">
 
-  <div id="df-92031634-2a35-4920-b3bc-7e7fdbbcb0a5" class="colab-df-container">
+  <div id="df-df490725-df09-4364-8bff-9f2b45699bef" class="colab-df-container">
     <div>
 
 
@@ -354,7 +360,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="colab-df-buttons">
 
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-92031634-2a35-4920-b3bc-7e7fdbbcb0a5')" title="Convert this dataframe to an interactive table." style="display:none;">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-df490725-df09-4364-8bff-9f2b45699bef')" title="Convert this dataframe to an interactive table." style="display:none;">
 
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 -960 960 960">
     <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"></path>
@@ -404,12 +410,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
     <script>
       const buttonEl =
-        document.querySelector('#df-92031634-2a35-4920-b3bc-7e7fdbbcb0a5 button.colab-df-convert');
+        document.querySelector('#df-df490725-df09-4364-8bff-9f2b45699bef button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-92031634-2a35-4920-b3bc-7e7fdbbcb0a5');
+        const element = document.querySelector('#df-df490725-df09-4364-8bff-9f2b45699bef');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -429,15 +435,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 
 
-<div id="df-21cb1a51-30fd-4c42-895c-fd6c68d23fa7">
-  <button class="colab-df-quickchart" onclick="quickchart('df-21cb1a51-30fd-4c42-895c-fd6c68d23fa7')" title="Suggest charts" style="display:none;">
+    <div id="df-1a3e84c8-9894-40ab-b217-1f25acdb3ed0">
+      <button class="colab-df-quickchart" onclick="quickchart('df-1a3e84c8-9894-40ab-b217-1f25acdb3ed0')" title="Suggest charts" style="display:none;">
 
 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
     <g>
         <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"></path>
     </g>
 </svg>
-  </button>
+      </button>
 
 <style>
   .colab-df-quickchart {
@@ -529,31 +535,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 </style>
 
-  <script>
-    async function quickchart(key) {
-      const quickchartButtonEl =
-        document.querySelector('#' + key + ' button');
-      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
-      quickchartButtonEl.classList.add('colab-df-spinner');
-      try {
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      } catch (error) {
-        console.error('Error during call to suggestCharts:', error);
-      }
-      quickchartButtonEl.classList.remove('colab-df-spinner');
-      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
-    }
-    (() => {
-      let quickchartButtonEl =
-        document.querySelector('#df-21cb1a51-30fd-4c42-895c-fd6c68d23fa7 button');
-      quickchartButtonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-    })();
-  </script>
-</div>
+      <script>
+        async function quickchart(key) {
+          const quickchartButtonEl =
+            document.querySelector('#' + key + ' button');
+          quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+          quickchartButtonEl.classList.add('colab-df-spinner');
+          try {
+            const charts = await google.colab.kernel.invokeFunction(
+                'suggestCharts', [key], {});
+          } catch (error) {
+            console.error('Error during call to suggestCharts:', error);
+          }
+          quickchartButtonEl.classList.remove('colab-df-spinner');
+          quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+        }
+        (() => {
+          let quickchartButtonEl =
+            document.querySelector('#df-1a3e84c8-9894-40ab-b217-1f25acdb3ed0 button');
+          quickchartButtonEl.style.display =
+            google.colab.kernel.accessAllowed ? 'block' : 'none';
+        })();
+      </script>
+    </div>
 
-  <div id="id_97ab7054-f262-4545-b26b-234f0713ac8c">
+  <div id="id_8bfb0a1a-7d65-4020-a137-d2b27eb66067">
     <style>
       .colab-df-generate {
         background-color: #E8F0FE;
@@ -594,7 +600,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <script>
       (() => {
       const buttonEl =
-        document.querySelector('#id_97ab7054-f262-4545-b26b-234f0713ac8c button.colab-df-generate');
+        document.querySelector('#id_8bfb0a1a-7d65-4020-a137-d2b27eb66067 button.colab-df-generate');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
@@ -610,7 +616,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Write a blog post about your favorite artist(s) in the spotify DataFrame using Jupyter Notebook, and add it to your online blog. In your blog post, utilize counting, sorting, indexing, and filtering methods.</p>
-<div id="cell-3" class="cell" data-outputid="5494ad3b-8729-43ba-f33e-e9b83b3d794c" data-execution_count="4">
+<div id="cell-3" class="cell" data-outputid="5494ad3b-8729-43ba-f33e-e9b83b3d794c">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>spotify</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  [[<span class="st">'playlist_name'</span>, <span class="st">'artist_name'</span>, <span class="st">'track_name'</span>, <span class="st">'album_name'</span>]]</span>
@@ -650,8 +656,99 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div><br><label><b>dtype:</b> int64</label>
 </div>
 </div>
+<section id="add-the-following-section-to-your-spotify-blog" class="level1">
+<h1># Add the following section to your Spotify blog:</h1>
+<p>Code - Use pandas to identify the ten artists with the most tracks. - Use seaborn to plot the distribution of pos for each of those artists. - Description: Write 2–3 sentences explaining how the pos distribution differs across these top ten artists.</p>
+<div id="cell-5" class="cell" data-outputid="e026f24a-81c1-4901-dd67-8342d59928d0" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>top_artists <span class="op">=</span> spotify[<span class="st">'artist_name'</span>].value_counts().head(<span class="dv">10</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>top_artists</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
 
 
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">count</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">artist_name</th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Drake</td>
+<td>2715</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Kanye West</td>
+<td>1065</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Kendrick Lamar</td>
+<td>1035</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Rihanna</td>
+<td>915</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">The Weeknd</td>
+<td>913</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Future</td>
+<td>784</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Eminem</td>
+<td>760</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Lil Uzi Vert</td>
+<td>728</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Ed Sheeran</td>
+<td>719</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">The Chainsmokers</td>
+<td>642</td>
+</tr>
+</tbody>
+</table>
+
+</div><br><label><b>dtype:</b> int64</label>
+</div>
+</div>
+<div id="cell-6" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-7" class="cell" data-outputid="8a35e55b-ec64-4604-c711-ec0f660055d5" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>top_artists <span class="op">=</span> spotify[<span class="st">'artist_name'</span>].value_counts().head(<span class="dv">10</span>).index</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>filtered_df <span class="op">=</span> spotify[spotify[<span class="st">'artist_name'</span>].isin(top_artists)]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>filtered_df, x<span class="op">=</span><span class="st">'artist_name'</span>, y<span class="op">=</span><span class="st">'pos'</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Distribution of Pos for Artists'</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="danl_210_spotify (2)_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This pos distribution shows a difference between the 10 artists. When the blue at the bottom is darkest and slowly increases lighter, that means the artist has the most tracks. As you can see, Drake’s column starts off very dark at the bottom indicating he has the mosts trakcs of the artists. You can see Kendrick and Kanye start off with royal blue at the bottom, those are the next two artists with the most tracks.</p>
+
+
+</section>
 
 </main> <!-- /main -->
 <script type="text/javascript" src="links.js"></script>
