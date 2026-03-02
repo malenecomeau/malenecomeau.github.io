@@ -1,0 +1,227 @@
+---
+title: "Untitled"
+editor: visual
+---
+```{r}
+install.packages("gapminder")
+library(gapminder)
+library(dplyr) 
+library(ggplot2)
+install.packages("readr")
+library(readr)
+
+```
+
+```{r}
+titanic_details <- read_csv("https://bcdanl.github.io/data/titanic_details.csv")
+
+rmarkdown::paged_table(titanic_details)
+```
+
+# Part 1 Titanic
+# Question 1 
+```{r}
+
+#Question 1: Pick the right scale
+#Using titanic_details (variables: age, fare, class, survived, gender):
+
+#Make a scatter plot of age vs fare, color by class.
+#Put fare on a log scale.
+#Format x/y labels to be readable (use label_number() and/or scales::dollar).
+
+
+titanic_details <- titanic_details %>% 
+  mutate(
+    class = as.character(class)
+  ) 
+```
+
+
+```{r}
+ggplot(titanic_details, aes(
+  x = age,
+  y = log(fare),
+  color = class
+)) +
+  scale_colour_viridis_d(option = "C",
+                         labels = c("First", "Second", "Third"),
+                         name = "Passenger Class")+
+  scale_y_continuous(trans = "log",
+                     breaks = c(10, 100, 150, 200),
+                     labels = scales::label_number(prefix = "USD")) +
+  guides(
+    color = guide_legend(
+      nrow = 1
+    )
+  ) +
+  theme(
+    panel.grid.minor = element_blank(),
+    legend.position = "left",
+    plot.title = element_text(color = "purple")
+  )
+```
+
+```{r}
+
+ggplot(titanic_details, aes(x = age, y = fare, color = class)) + 
+  geom_point() + 
+  scale_y_continuous(
+    trans = "log10", 
+    labels = scales::label_dollar() 
+  ) +
+  scale_x_continuous(
+    labels = scales::label_number() 
+  ) +
+  labs(
+    title = "Age vs. Fare on the Titanic, Colored by Class",
+    x = "Age (Years)", 
+    y = "Fare (USD, Log Scale)", 
+    color = "Class" 
+  ) 
+```
+
+# Question 2 
+```{r}
+#Starting from our Practice 1 plot:
+
+#Move the legend to the top (theme()).
+#Make the legend a single row (guides()).
+#Remove the legend for color only (keep other legends if we have them).
+
+
+ggplot(titanic_details, aes(x = age, y = fare, color = (class))) + 
+  geom_point(alpha = 0.6) +
+  theme(legend.position = "top") +
+  guides(color = "none") +
+  guides(fill = guide_legend(nrow = 1)) 
+```
+
+# Question 3 
+```{r}
+#Starting from any ggplot you made in Questions 1–2, use theme() arguments to create a consistent “house style.”
+
+#Update your plot so that it:
+
+#Moves the legend to the top using legend.position.
+#Makes the plot title purple using plot.title = element_text(...).
+#Removes minor gridlines using panel.grid.minor = element_blank().
+#Rotates the x-axis text by 45 degrees using axis.text.x = element_text(...).
+#Makes the x-axis title bold (and slightly larger) using axis.title.x = element_text(...)
+
+ggplot(titanic_details, aes(
+  x = age,
+  y = log(fare),
+  color = class
+  )) +
+  geom_point(size = .75) +
+  scale_y_continuous(
+    #breaks = c(1,2,6),
+    labels = scales::dollar
+  ) +
+  labs(
+    title = "Titanic Age & Fares by Class",
+  ) +
+  facet_wrap(~class) +
+  guides(color = guide_legend(order = 1)) +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(color ="blue",
+                              size = 15),
+    legend.key.size = unit(.1,'cm'),
+    panel.grid.minor = element_blank(),
+    axis.text.x = element_text(angle = 45),
+    axis.title.x = element_text(face = "bold",
+                                lineheight = unit(1,"cm"),
+                                #hjust = ,
+                                #angle = 180
+                                )
+  )
+```
+# Part 2. Organ Donation in the OECD
+
+```{r}
+install.packages("socviz")
+organdata <- socviz::organdata
+
+organdata |> 
+  rmarkdown::paged_table()
+```
+
+# Question 4 
+```{r}
+# Put roads on a log10 scale.
+# Make y-axis text break at 5, 15, and 25
+# Make y-axis text appear as “Five”, “Fifteen”, and “Twenty Five”
+# Set color legend categories as
+# “Corporatist”
+# “Liberal”,
+# “Social Democratic”
+# “Unclassified”
+
+p <- ggplot(data = organdata,
+            mapping = aes(x = roads,
+                          y = donors,
+                          color = world))
+p + geom_point()
+```
+
+```{r}
+organdata |>
+  mutate(world = ifelse(is.na(world), "Unclassified", world),
+         world = ifelse(world == "SocDem", "Social Democratic", world),
+         ) |>
+  ggplot(data = organdata)
+```
+
+
+```{r}
+p +
+  geom_point()
+```
+
+```{r}
+
+library(ggplot2)
+
+
+p <- ggplot(data = organdata, mapping = aes(x = roads, y = donors, color = world))
+
+
+p + geom_point() +
+  scale_x_log10() +
+  scale_y_continuous(
+    breaks = c(5, 15, 25),
+    labels = c("Five", "Fifteen", "Twenty Five")
+  ) +
+  scale_color_discrete(
+    labels = c("Corporatist", "Liberal", "Social Democratic", "Unclassified")
+  )
+
+```
+
+# Part 3. Survey on Brexit
+
+```{r}
+brexit <- read_csv('https://bcdanl.github.io/data/brexit.csv')
+```
+
+# Question 5
+```{r}
+p_title <- "Was Britain right/wrong to vote to leave"
+p_subtitle <- "YouGov Survey Results 2.3 September, 2019"
+p_caption <- "Source: https://bit.ly/2lCJZVg"
+
+```
+
+
+```{r}
+p +
+  geom_bar()+
+  scale_fill_manual(values = c("grey", "#67a9cf", "#ef8a62")) +
+  facet_wrap(~region,
+             nrow = 1),+
+  guides(fill = "none")
+```
+
+
+

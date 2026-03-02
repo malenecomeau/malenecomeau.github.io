@@ -1,0 +1,206 @@
+---
+title: "Untitled"
+editor: visual
+---
+```{r}
+install.packages("gapminder") # Only need to run this once per machine
+library(gapminder)
+library(dplyr) # Often used with gapminder for data manipulation
+library(ggplot2)
+```
+
+```{r}
+gapminder |>
+  filter(year == 2007) |>
+  ggplot(aes(x = gdpPercap, 
+             y = lifeExp, 
+             color = continent)) +
+  geom_point(size = 3) +
+  scale_color_manual(
+    values = c(
+      "Africa" = "#1b9e77",
+      "Americas" = "#d95f02",
+      "Asia" = "#7570b3",
+      "Europe" = "#e7298a",
+      "Oceania" = "#66a61e"
+    )
+  )
+```
+
+```{r}
+gapminder |>
+  filter(year == 2007) |>
+  ggplot(aes(x = gdpPercap, 
+             y = lifeExp,
+             color = continent)) +
+  geom_point(alpha = 0.8,
+             size = 3) +
+  geom_smooth(se = F) +
+  scale_x_continuous(
+    breaks = c(1000, 10000, 50000),
+    labels = scales::dollar
+  ) +
+  labs(
+    x = "GDP per capita",
+    y = "Life expectancy",
+    color = "Continent")
+```
+
+```{r}
+gapminder |>
+  filter(year == 2007) |>
+  ggplot(aes(gdpPercap, lifeExp, 
+             color = pop)) +
+  geom_point(alpha = 0.8) +
+  scale_color_viridis_c() +
+  guides(
+    color = 
+      guide_colorbar(
+        barheight = unit(4, "cm"),
+        ))
+```
+
+```{r}
+gapminder |>
+  filter(year == 2007) |>
+  ggplot(aes(gdpPercap, lifeExp, color = continent)) +
+  geom_point(size = 3) +
+  guides(color = guide_legend(nrow = 1, byrow = TRUE))
+```
+
+```{r}
+gapminder |>
+  filter(year == 2007) |>
+  ggplot(aes(gdpPercap, lifeExp, 
+             color = continent, 
+             size = pop)) +
+  geom_point(alpha = 0.8) +
+  guides(
+    color = guide_legend(order = 1),
+    size  = guide_legend(order = 2)
+  )
+```
+
+```{r}
+gapminder |>
+  filter(year == 2007) |>
+  ggplot(aes(gdpPercap, lifeExp, 
+             color = continent)) +
+  geom_point(alpha = 0.2, 
+             size = 3) + 
+  guides(
+    color = 
+      guide_legend(
+        override.aes = list(alpha = 1)))
+```
+
+```{r}
+p <- gapminder |>
+  filter(year == 2007) |>
+  ggplot(aes(gdpPercap, lifeExp, 
+             color = continent)) +
+  geom_point(size = 3) +
+  scale_x_log10()
+
+p + theme_minimal()
+
+```
+```{r}
+p + theme_classic()
+
+```
+
+```{r}
+p + theme_light()
+
+```
+
+```{r}
+p + hrbrthemes::theme_ipsum()
+
+```
+
+
+```{r}
+p + ggthemes::theme_fivethirtyeight()
+```
+
+```{r}
+gapminder |>
+  filter(year == 2007) |>
+  ggplot(aes(gdpPercap, lifeExp, 
+             color = continent)) +
+  geom_point(size = 3, alpha = 0.9) +
+  scale_x_log10(labels = scales::dollar) +
+  labs(
+    title = "Life expectancy vs GDP per capita (2007)",
+    subtitle = "Log x-axis; color = continent",
+    x = "GDP per capita (log scale)",
+    y = "Life expectancy",
+    color = "Continent",
+    caption = "Source: gapminder"
+  ) +
+  theme(
+    legend.position = "top",
+    plot.title = element_text(face = "bold"),
+    panel.grid.minor = element_blank()
+  )
+```
+
+```{r}
+# putting it all together 
+
+gapminder |>
+  filter(year == 2007) |>
+  ggplot(aes(gdpPercap, lifeExp, 
+             color = continent, 
+             size = pop)) +
+  geom_point(alpha = 0.7) +
+
+  # SCALES: transform, breaks, labels
+  scale_x_log10(
+    breaks = c(500, 2000, 10000, 50000),
+    labels = scales::dollar
+  ) +
+  scale_size_continuous(labels = scales::label_number(scale_cut = scales::cut_si(""))) +
+
+  # GUIDES: legend order + layout
+  guides(
+    color = guide_legend(order = 1, nrow = 1),
+    size   = guide_legend(order = 2)
+  ) +
+
+  # THEME: layout + typography
+  theme(
+    legend.position = "top",
+    plot.title = element_text(face = "bold"),
+    panel.grid.minor = element_blank()
+  ) +
+
+  # labels are not scales/guides/themes, but they coordinate everything
+  labs(
+    title = "Scales + Guides + Themes in one figure",
+    x = "GDP per capita (log scale)",
+    y = "Life expectancy",
+    color = "Continent",
+    size = "Population"
+  )
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
