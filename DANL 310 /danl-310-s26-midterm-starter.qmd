@@ -1,0 +1,443 @@
+---
+title: Midterm Exam
+subtitle: "DANL 310-01: Data Visualization and Presentation"
+author: Byeong-Hak Choe
+date: last-modified
+
+fig-width: 9
+---
+
+```{r setup}
+#| include: false
+
+library(tidyverse)
+library(ggthemes)  
+#library(hrbrthemes)
+library(RColorBrewer)
+library(socviz)
+```
+
+# Honor Pledges
+
+I solemnly swear that I will not cheat or engage in any form of academic dishonesty during this exam.
+
+I will not communicate with other students or use unauthorized materials.
+
+I will uphold the integrity of this exam and demonstrate my own knowledge and abilities.
+
+By taking this pledge, I acknowledge that academic dishonesty undermines the academic process and is a violation of the trust placed in me as a student.
+
+I accept the consequences of any violation of this promise.
+
+- Student's Name: Malene Comeau
+
+
+<br>
+
+The web-link for the exam questions is [here](https://bcdanl.github.io/310/danl-ex/danl-310-s26-midterm-q.html)
+
+<br>
+
+
+Below is R packages for this exam:
+```{r}
+library(tidyverse)
+library(skimr)
+library(ggthemes)  
+#library(hrbrthemes)
+library(rmarkdown)
+```
+
+<br><br>
+
+
+The following data.frame is for the exam:
+
+```{r}
+#| warning: false
+#| message: false
+eia <- read_csv("https://bcdanl.github.io/data/eia_raw_2025_11.csv")
+
+rmarkdown::paged_table(eia)
+```
+
+
+## Variable Description
+
+- `year`: Year
+- `month`: Month
+- `mon_yr`: Date
+- `retail_price`: Retail price (dollars per gallon)
+- `refining`: Proportion of the retail price attributed to the refining component
+- `dist_mkt`: Proportion of the retail price attributed to the distribution and marketing component
+- `taxes`:  Proportion of the retail price attributed to taxes
+- `crude_oil`: Proportion of the retail price attributed to crude oil
+
+**Note**: For some observations, the sum of `refining`, `dist_mkt`, `taxes`, and `crude_oil` may not be equal to 100 but ranges from 98 to 100.1, due to rounding errors.
+
+
+# Question 1
+Provide R code to create the data.frame `q1` from the `eia` data frame.
+
+The following shows the `q1` data.frame:
+
+```{r}
+#| message: false
+#| warning: false
+
+q1 <- read_csv("https://bcdanl.github.io/data/danl-310-s26-midterm-q1.csv")
+
+rmarkdown::paged_table(q1)
+```
+
+
+**Answer:**
+```{r}
+q1 |>
+  head(10)
+
+```
+
+
+<br>
+
+# Question 2
+Provide R code using the `q1` data.frame to recreate the **ggplot** figure below that illustrates how the distribution of `pct` varies by `component`.
+
+- Use the "Dark2" color palette, provided by the `RColorBrewer` package.
+
+- Use the following character vectors for the `component` categories:
+
+```{r}
+#| eval: false
+
+c("crude_oil", "dist_mkt", "refining", "taxes")
+c("Crude Oil", "Distribution \n& Marketing", "Refining", "Taxes")
+```
+
+
+![](https://bcdanl.github.io/lec_figs/danl-310-midterm-q2.png)
+
+**Answer:**
+```{r}
+q1 <- read_csv("https://bcdanl.github.io/data/danl-310-s26-midterm-q1.csv")
+
+ggplot(data = q1,
+       mapping = 
+         aes(x = pct,
+             y = component,
+             fill = component)) +
+  geom_boxplot(
+    show.legend = FALSE) + 
+  scale_fill_tableau() 
+  
+  
+  
+
+```
+
+
+
+<br>
+
+# Question 3
+Provide R code using the `q1` data.frame to recreate the **ggplot** figure below that illustrates how the relationship between `retail_price` and the **proportion of retail price** varies across the given attributes.
+
+- Use the following colors: "#56B4E9", "#D55E00", and "grey80"
+
+
+![](https://bcdanl.github.io/lec_figs/danl-310-midterm-q3.png)
+
+**Answer:**
+```{r}
+ggplot(data = q1,
+       mapping = 
+         aes(x = pct,
+             y = retail_price)) +
+  geom_point(alpha = .2) +
+  geom_smooth(aes(color = retail_price,
+                  fill = retail_price),
+              method = "lm") +
+  facet_grid(~component) 
+labs(x = "Proportion",
+     y = "Retail Price") +
+  theme_minimal() +
+  theme(
+    legend.position = "top"
+  ) +
+  guides(
+    color = guide_legend(
+      keywidth = 4,
+      label.position = "bottom"
+    ),
+    fill = guide_legend(
+      keywidth = 4,
+      label.position = "bottom"
+    )
+  )
+
+```
+
+
+<br>
+
+
+# Question 4
+Provide R code to create the data.frame `q4` from the `q1` data frame.
+
+- The sum of `pct_adj` within each month-year is exactly **100**.
+- The sum of `retail_price_decomposed` within each month-year is exactly the `retail_price` for that month-year.
+
+The following shows the `q4` data.frame:
+
+```{r}
+#| message: false
+#| warning: false
+
+q4 <- read_csv("https://bcdanl.github.io/data/danl-310-s26-midterm-q4.csv")
+
+rmarkdown::paged_table(q4)
+```
+
+
+**Answer:**
+```{r}
+pct_adj = 100
+retail_price_decomposed = retail_price
+q4 <- q1 %>%
+  arrange(desc(is.na(pct_adj)))
+  
+
+```
+
+
+<br>
+
+# Question 5
+Provide R code using the `q4` data.frame to recreate the **ggplot** figure below that illustrates how the relationship between `retail_price` and `retail_price_decomposed` varies across the given attributes.
+
+- Use the following colors: "#56B4E9", "#D55E00", and "grey80"
+
+![](https://bcdanl.github.io/lec_figs/danl-310-midterm-q5.png)
+
+**Answer:**
+```{r}
+q4 <- read_csv("https://bcdanl.github.io/data/danl-310-s26-midterm-q4.csv")
+
+ggplot(data = q4,
+       mapping = 
+         aes(x = retail_price_decomposed,
+             y = retail_price)) +
+  geom_point(alpha = .2) +
+  geom_smooth(aes(color = retail_price,
+                  fill = retail_price),
+              method = "lm") +
+  facet_grid(~component) 
+labs(x = "Retail Price (decomposed)",
+     y = "Retail Price",
+     color = "retail_price",
+     fill = "retail_price") +
+  theme_minimal() +
+  theme(
+    legend.position = "top"
+  ) +
+  guides(
+    color = guide_legend(
+      keywidth = 4,
+      label.position = "bottom"
+    ),
+    fill = guide_legend(
+      keywidth = 4,
+      label.position = "bottom"
+    )
+  )
+
+```
+
+
+<br>
+
+# Question 6
+Provide R code using the `q4` data.frame to recreate the **ggplot** figure below that illustrates how the **monthly** time trends of `retail_price` and `retail_price_decomposed` have been.
+
+- Use the following character vectors for the `component` categories:
+
+```{r}
+#| eval: false
+
+c("crude_oil", "dist_mkt", "refining", "taxes")
+c("Crude Oil", "Distribution \n& Marketing", "Refining", "Taxes")
+```
+
+
+- Use the _colorblind-friendly_ **scale** function provided by the R package, `ggthemes`.
+- Use the following color for the line's color.
+  - "#CC79A7"
+- Use the following characters for plot labeling:
+
+```{r}
+#| eval: false
+
+p_title <- 'WHAT DO WE PAY FOR IN A GALLON OF REGULAR GASOLINE?'
+p_subtitle <- 'Gasoline Pump Components History'
+p_caption <- 'Source: https://www.eia.gov/petroleum/gasdiesel/gaspump_hist.php'
+```
+
+- Use the following scale function for x-axis scale:
+```{r}
+#| eval: false
+
+  scale_x_date(
+    date_breaks = "2 year",
+    date_labels = "%Y",
+    expand = c(0, 0)
+  )
+```
+
+
+![](https://bcdanl.github.io/lec_figs/danl-310-midterm-q6.png)
+
+**Answer:**
+```{r}
+ggplot(data = q4,
+       mapping = aes(x = years,
+                     y = retail_price))+
+  geom_histogram(bins = 50)+ 
+labs(title ='WHAT DO WE PAY FOR IN A GALLON OF REGULAR GASOLINE?',
+       subtitle = 'Gasoline Pump Components History',
+       caption = 'Source: https://www.eia.gov/petroleum/gasdiesel/gaspump_hist.php') +
+scale_fill_brewer(palette = "Accent") +
+  scale_y_percent() +
+  theme_ipsum() +
+  theme(panel.grid.minor = element_blank(),
+        legend.title = element_text(face = "bold",
+                                    hjust = .2)) +
+  guides(
+    fill = guide_legend(
+      keyheight = 3.25,
+      keywidth = 3.75
+    )
+  )
+
+```
+
+
+<br>
+
+
+# Question 7
+Provide R code using the `q4` data.frame to recreate the **ggplot** figure below that illustrates how the **monthly** time trends of `pct_adj` across components have been.
+
+
+- Use the following character vectors for the `component` categories:
+
+```{r}
+#| eval: false
+
+c("crude_oil", "dist_mkt", "refining", "taxes")
+c("Crude Oil", "Distribution \n& Marketing", "Refining", "Taxes")
+```
+
+- Use the _colorblind-friendly_ **scale** function provided by the R package, `ggthemes`.
+- Use the following characters for plot labeling:
+
+```{r}
+#| eval: false
+
+p_title <- 'WHAT DO WE PAY FOR IN A GALLON OF REGULAR GASOLINE?'
+p_subtitle <- 'Gasoline Pump Components History'
+p_caption <- 'Source: https://www.eia.gov/petroleum/gasdiesel/gaspump_hist.php'
+```
+
+- Use the following scale function for x-axis scale:
+```{r}
+#| eval: false
+
+  scale_x_date(
+    date_breaks = "2 year",
+    date_labels = "%Y",
+    expand = c(0, 0)
+  )
+```
+
+![](https://bcdanl.github.io/lec_figs/danl-310-midterm-q7.png)
+
+
+**Answer:**
+```{r}
+ggplot(data = q4,
+       mapping = 
+         aes(x = year,
+             y = retail_price)) +
+  geom_col(color = )+
+  labs(title ='WHAT DO WE PAY FOR IN A GALLON OF REGULAR GASOLINE?',
+       subtitle = 'Gasoline Pump Components History',
+       caption = 'Source: https://www.eia.gov/petroleum/gasdiesel/gaspump_hist.php') +
+  scale_fill_brewer(palette = "Accent") +
+  theme(panel.grid.minor = element_blank(),
+        legend.title = element_text(face = "bold",
+                                    hjust = .2)) +
+  guides(
+    fill = guide_legend(
+      keyheight = 3.25,
+      keywidth = 3.75
+    )
+  )
+```
+
+
+<br>
+
+# Question 8 (10 points)
+**No R coding Needed.** Use the plots shown above (decomposed-dollar scatterplots, proportion scatterplots, the time-series component shares, and the boxplot of component shares) to interpret gasoline price components.
+
+Focus only on **crude_oil** and **taxes**. For each of these two components:
+
+
+1. **Proportion vs. `retail_price`:**  
+   State whether the relationship appears **positive**, **negative**, or **approximately independent**, and briefly justify using evidence from the proportion scatterplot and/or the time-series stacked-share plot.
+   
+**Answer**:
+
+The correlation is positve. As the retail price increases the proportation also increases. On the plots is shwos an upwards like following the increase of both titles. 
+
+
+<br>
+   
+
+2. **Decomposed dollar amount vs. `retail_price`:**  
+   State whether the relationship appears **positive**, **negative**, or **approximately independent**, and briefly justify using evidence from the decomposed-dollar scatterplot.
+   
+**Answer**:
+
+In all the components comparing the retail price and the retail price decomposed it shows a positve correlation. As both increase there is an upward slope in all the graphs for each component. 
+
+
+<br>
+   
+
+
+3. **Intuition (1–2 sentences):**  
+   Explain why this pattern makes sense economically (e.g., market-driven vs. policy-driven components, fixed-per-gallon vs. price-sensitive components).
+   
+**Answer**:
+
+It makes since economically because the increase in prices people still need gas and will pay it. So the increase in price shows a positve slope in all components. They all align with each other becasue it is all oil. SO if one component increases they all do. 
+
+
+<br>
+   
+
+
+4. **Stability and variability (1 sentence each):**  
+   Using the time-series plot and the boxplot, comment on whether the component share is **stable or volatile over time**, and whether its share tends to be **high or low on average** compared to the other components.
+   
+**Answer**:
+
+The component is volatile overtime becasue it can change frequently. The share tend to be high. 
+
+
+<br>
+   
+
+

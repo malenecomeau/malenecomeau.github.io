@@ -215,13 +215,155 @@ p_caption <- "Source: https://bit.ly/2lCJZVg"
 
 
 ```{r}
-p +
-  geom_bar()+
-  scale_fill_manual(values = c("grey", "#67a9cf", "#ef8a62")) +
-  facet_wrap(~region,
-             nrow = 1),+
-  guides(fill = "none")
+#| width: 500
+#| height: 400
+brexit %>% 
+  colnames()
+ggplot(brexit, aes(
+  y = opinion,
+  fill = opinion)) +
+  geom_bar(show.legend = F) +
+  facet_wrap(~region, nrow = 1) +
+  scale_fill_manual(values = c('gray', '#67a9cf', "#ef8a62")) +
+  labs(y = "",
+       title = "Was Britain Right/Wrong to Vote to Leave EU?",
+       subtitle = "YouGov Survey Results, 2-3 September, 2019") +
+  theme(
+    title = element_text(size = unit(.2, "mm"))
+  ) +
+  theme_calc()
+```
+
+# Question 6 
+
+```{r}
+#| width: 500
+#| height: 400
+brexit %>% 
+  colnames()
+ggplot(brexit, aes(
+  y = opinion,
+  fill = opinion)) +
+  geom_bar(show.legend = F, ) +
+  facet_wrap(~region, nrow = 1, scales = "free_x") +
+  scale_fill_manual(values = c('gray', '#67a9cf', "#ef8a62")) +
+  labs(y = "",
+       title = "Was Britain Right/Wrong to Vote to Leave EU?",
+       subtitle = "YouGov Survey Results, 2-3 September, 2019") +
+  theme(
+    title = element_text(size = unit(.2, "mm"))
+  ) +
+  theme_calc()
+```
+# Question 7
+```{r}
+ggplot(brexit, aes(
+  y = opinion,
+  fill = opinion)) +
+  geom_bar(show.legend = F, ) +
+  facet_wrap(~region, nrow = 1, scales = "free_x") +
+  scale_fill_manual(values = c('gray', '#67a9cf', "#ef8a62")) +
+  labs(y = "",
+       title = "Was Britain Right/Wrong to Vote to Leave EU?",
+       subtitle = "YouGov Survey Results, 2-3 September, 2019") +
+  theme_calc() +
+  theme(
+    title = element_text(size = unit(.2, "mm")),
+    axis.text.x = element_text(angle = 45)
+  )
+```
+# Question 8 
+```{r}
+#| width: 10
+#| height: 40
+
+ggplot(brexit, aes(
+  y = opinion,
+  fill = opinion)) +
+  geom_bar(show.legend = F ) +
+  facet_wrap(~region, nrow = 5, scales = "free_x") +
+  labs(y = "",
+       title = "Was Britain Right/Wrong to Vote to Leave EU?",
+       subtitle = "YouGov Survey Results, 2-3 September, 2019") +
+  theme(
+    title = element_text(size = unit(.2, "mm")),
+    axis.text.x = element_text(angle = 45)
+  ) +
+  scale_fill_manual(values = c('gray', '#67a9cf', "#ef8a62"))
+?position_stack
+```
+
+# Part 4 
+
+```{r}
+#Replicate the below bar chart
+#Use the following colors:
+#“#1B9E77”
+#“#D95F02”
 ```
 
 
+
+```{r}
+studebt <- socviz::studebt
+
+studebt |> 
+  rmarkdown::paged_table()
+```
+# Question 9 
+```{r}
+library(RColorBrewer)
+
+colnames(studebt)
+
+
+unique(studebt$Debt)
+
+ggplot(studebt, aes(
+  y = Debt,
+  x = pct,
+  fill = type
+  )) +
+  geom_col(show.legend = F) + 
+  facet_wrap(~type, nrow = 1) +
+  scale_fill_brewerl(palette.)) +
+  scale_x_continuous(
+    breaks = c(0,10,20),
+    labels = c("0%","10%","20%")
+  ) +
+  labs(
+    title = "Outstanding Student Loans",
+    subtitle = "44 Million borrowers owe a total of $1.3 Trillion",
+    y = "Amount Owed in Thousand of Dollars"
+  )
+
+
+```
+
+# Question 10
+```{r}
+ggplot(studebt, aes(
+  y = type,
+  x = pct,
+  fill = Debt
+  )) +
+  geom_col(show.legend = T, position = "stack") +
+  scale_x_continuous(
+    breaks = c(0,10,20),
+    labels = c("0%","10%","20%")
+  ) +
+  labs(
+    title = "Outstanding Student Loans",
+    subtitle = "44 Million borrowers owe a total of $1.3 Trillion",
+    y = "Amount Owed in Thousand of Dollars",
+    x = ""
+  ) + 
+  theme(
+    legend.location = 'top'
+  ) +
+  guides(
+    guide_legend(nrow = 1)
+  ) 
+?theme
+```
 

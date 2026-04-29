@@ -1,0 +1,205 @@
+---
+title: "Untitled"
+editor: visual
+---
+```{r}
+library(tidyverse)
+library(sf)
+library(tigris)
+library(scales)
+library(ggthemes)
+library(hrbrthemes)
+library(rmarkdown)
+```
+# Question 1 
+```{r}
+election_panel <- read_csv(
+  'https://bcdanl.github.io/data/election_panel_2000_2024.csv')
+```
+```{r}
+library(tidyverse)
+library(socviz)
+
+
+election_panel <- read_csv(
+  "https://bcdanl.github.io/data/election_panel_2000_2024.csv"
+)
+
+election_panel$id <- as.character(election_panel$id)
+
+map_data <- socviz::county_map %>%
+  left_join(election_panel, by = "id") %>%
+  filter(!is.na(year))
+
+
+break_vals <- quantile(
+  map_data$pct_DEMOCRAT,
+  probs = c(0, .25, .5, .75, 1),
+  na.rm = TRUE
+)
+
+label_vals <- c(
+  paste0(round(break_vals[1], 1), " (Min)"),
+  paste0(round(break_vals[2], 1), " (25th)"),
+  paste0(round(break_vals[3], 1), " (Median)"),
+  paste0(round(break_vals[4], 1), " (75th)"),
+  paste0(round(break_vals[5], 1), " (Max)")
+)
+
+ggplot(map_data, aes(long, lat, group = group)) +
+
+  geom_polygon(
+    aes(fill = pct_DEMOCRAT),
+    color = "grey80",
+    size = 0.1
+  ) +
+
+  facet_wrap(~year, ncol = 3) +
+
+  scale_fill_gradientn(
+    colors = c("#FFFFFF", "#211f82", "#81ABD9"),
+    breaks = break_vals,
+    labels = label_vals,
+    na.value = "grey80",
+    name = "Percent Democrat",
+    
+    guide = guide_colorbar(
+      barwidth = 15,   # makes scale longer
+      barheight = 1
+    )
+  ) +
+
+  coord_quickmap() +
+
+  theme_void() +
+
+  theme(
+    legend.position = "bottom",
+    
+    legend.text = element_text(size = 7),
+  legend.title = element_text(size = 8),
+
+    strip.background = element_rect(
+      fill = "#81ABD9",
+      color = NA
+    ),
+
+    strip.text = element_text(
+      face = "bold",
+      size = 10,
+      color = "black"
+    ),
+
+    plot.title = element_text(
+      face = "bold",
+      size = 16,
+      hjust = 0.5
+    ),
+    plot.subtitle = element_text(
+    face = "bold",
+    hjust = 0.5
+  )
+  ) +
+
+  labs(
+    title = "U.S. Presidential Elections, 2000–2024",
+    subtitle = "Votes toward Democratic Presidential Candidates"
+  )
+```
+# Question 2 
+
+```{r}
+ny_income <- read_csv("https://bcdanl.github.io/data/NY_pinc_wide.csv")
+
+p_title <- "Personal Income by County in New York"
+p_caption <- "Source: U.S. Bureau of Economic Analysis (https://www.bea.gov/data/income-saving/personal-income-by-county)"
+```
+```{r}
+ny_counties_sf <- counties(state = "NY", year = 2024, cb = TRUE) |>
+  st_as_sf()
+```
+
+```{r}
+library(tidyverse)
+library(sf)
+library(tigris)
+devtools::install_github("sjmgarnier/viridis")
+install.packages(viridis)
+library(viridis)
+
+options(tigris_use_cache = TRUE)
+```
+
+```{r}
+
+library(tidyverse)
+library(sf)
+library(tigris)
+
+options(tigris_use_cache = TRUE)
+
+
+ny_income <- read_csv("https://bcdanl.github.io/data/NY_pinc_wide.csv") |>
+  pivot_longer(
+    cols = starts_with("pincp"),
+    names_to = "year",
+    values_to = "income"
+  ) |>
+  mutate(
+    year = str_remove(year, "pincp") |> as.integer(),
+    income = as.numeric(income),
+    fips = sprintf("%05d", fips)
+  )
+
+
+ny_counties_sf <- counties(state = "NY", year = 2024, cb = TRUE) |>
+  st_as_sf()
+
+
+ny_map_df <- ny_counties_sf |>
+  left_join(ny_income, by = c("GEOID" = "fips"))
+
+
+p_title <- "Personal Income by County in New York"
+p_caption <- "Source: U.S. Bureau of Economic Analysis (https://www.bea.gov/data/income-saving/personal-income-by-county)"
+
+
+ny_map_df |>
+  filter(year %in% 2019:2024) |>
+  ggplot(aes(fill = income)) +
+  geom_sf(color = "white", size = 0.15) +
+  scale_fill_gradientn(
+    colours = rev(rainbow(7)),   
+    trans = "log10",
+    name = "Income",
+    breaks = c(200000, 175000, 125000, 100000, 75000, 50000),
+    labels = scales::dollar_format()(c(200000, 175000, 125000, 100000, 75000, 50000))
+  ) +
+  guides(
+    fill = guide_colorbar(
+      barheight = unit(18, "lines"),
+      barwidth  = unit(0.6, "lines")
+    )
+  ) +
+  facet_wrap(~ year, ncol = 3) +
+  labs(
+    title = p_title,
+    caption = p_caption
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    panel.grid = element_blank(),
+    axis.text = element_blank(),
+    axis.title = element_blank(),
+    panel.spacing = unit(1, "lines"),
+    strip.text = element_text(size = 12, face = "bold"),
+    plot.title = element_text(size = 16, face = "bold", hjust = 0),
+    plot.caption = element_text(size = 7, hjust = 1),
+    legend.position = "right",
+    legend.title = element_text(size = 11),
+    legend.text = element_text(size = 9)
+  )
+
+```
+
+
