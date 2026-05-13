@@ -91,7 +91,7 @@ mtcars %>%
   labs(
     x = "Displacement (cu. in.)",
     y = "Fuel efficiency (mpg)",
-    color = "Horsepower",
+    color = "Horse\npower",
   ) +
   theme_fivethirtyeight() +
   theme(
@@ -148,7 +148,7 @@ popgrowth_df %>%
   ggplot(aes(x = state, y = popgrowth, fill = region)) +
   geom_col() +
   coord_flip() +
-  scale_y_continuous(labels = percent_format(accuracy = 0.1)) +   # percentage axis
+  scale_y_continuous(labels = percent_format(accuracy = 0.1)) +   
   scale_fill_manual(
     values = c(
       "West" = "#FFF7AE",      
