@@ -11,6 +11,8 @@ website:
         href: blog-listing.qmd
       - text: Project
         href: danl_proj_nba.ipynb
+      - text: NFL Project
+        href: danl-310-data-storytelling-nfl-website.qmd
       - text: "Python Data Analysis"
         menu: 
           - text: Pandas Basics

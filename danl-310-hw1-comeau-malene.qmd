@@ -1,4 +1,0 @@
----
-title: "danl-310-hw1-comeau-malene"
-editor: visual
----
